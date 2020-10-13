@@ -33,12 +33,12 @@ public class DatabaseValidation
 	{
 		if(hash.containsKey(u))
 		{
-			hash.put(u, p);
-			return true;
+			return false;
 		}
 		else
 		{
-			return false;
+			hash.put(u, p);
+			return true;
 		}
 	}
 }

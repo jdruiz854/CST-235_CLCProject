@@ -23,10 +23,10 @@
             <h:inputSecret value="#{login.password}" />
         </div>
         <div id="submitBtn" class="textPlacement">
-            <h:commandButton value="Register" action="#{login.validateNewUser(username, password}" />   
+            <h:commandButton value="Register" action="#{login.validateNewUser}" />   
         </div>
         <div id="homeBtn" class="textPlacement">
-        	<h:button value ="Home" outcome="/home.xhtml"/>
+        	<h:button value ="Home" outcome="success"/>
         </div>
                 
     </h:form>

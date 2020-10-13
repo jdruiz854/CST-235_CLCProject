@@ -34,10 +34,10 @@ public class Login
 	}
 
 	//Validates the username and password entered into the form and returns success or failure depending on the outcome of the check.
-	public String validateUserAndPassword(String username, String password)
+	public String validateUserAndPassword()
 	{
 		
-		boolean valid = DatabaseValidation.check(username, password);
+		boolean valid = DatabaseValidation.check(this.username, this.password);
 		if(valid)
 		{
 			return "success";
@@ -48,15 +48,19 @@ public class Login
 		}
 	}
 	
-	public String validateNewUser(String username, String password)
+	public String validateNewUser()
 	{
-		boolean valid = DatabaseValidation.checkNewUser(username, password);
+		System.out.println("Hello new user");
+		boolean valid = DatabaseValidation.checkNewUser(this.username, this.password);
+		System.out.println("After db valid");
 		if (valid)
 		{
+			System.out.println("true");
 			return "success";
 		}
 		else
 		{
+			System.out.println("false");
 			return "register";
 		}
 	}
