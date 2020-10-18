@@ -1,0 +1,25 @@
+<!-- page that comes in when login fails includes a button to return home and try to login again -->
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>JSF Authentication</title>
+    <style type="text/css">
+        .errorText {
+            color: purple;
+            margin: 12px;
+            font-weight: bold;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div id="resultErr">
+        <span id="invalidCre" class="errorText">Invalid Credentials</span>
+    </div>
+    
+   	<div id="homeBtn" class="textPlacement">
+       	<h:button value ="Home" outcome="/home.xhtml"/>
+    </div>
+</h:body>
+</html>

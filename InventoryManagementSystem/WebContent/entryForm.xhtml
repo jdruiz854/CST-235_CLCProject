@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+	<body>
+		<h1>New Item Form</h1>
+				<p>Input new Item Information: </p>
+		
+		<h:form>
+			Sku Number: 
+			<h:inputText value="#{creation.sku}" /> <br />
+			Item Name: 
+			<h:inputText value="#{creation.itemName}" /> <br/>
+			Item Description: 
+			<h:inputText value="#{creation.itemDescription}" /> <br/>
+			Quantity:
+			<h:inputText value="#{creation.quantity}"/> <br/>
+			
+			<h:commandButton action ="#{formController.onSubmitEdit()}" value="Submit"/>
+		</h:form>
+		
+	</body>
+</html>
