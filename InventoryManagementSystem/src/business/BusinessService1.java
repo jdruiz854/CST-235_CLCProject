@@ -1,9 +1,15 @@
 package business;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Local;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
+
+import beans.Creation;
+import beans.Login;
+import database.DatabaseValidation;
 
 /**
  * Session Bean implementation class BusinessService1
@@ -11,30 +17,52 @@ import javax.enterprise.inject.Alternative;
 @Alternative
 @Stateless
 @Local(BusinessServiceInterface.class)
-@LocalBean
-public class BusinessService1 implements BusinessServiceInterface {
-
+public class BusinessService1 implements BusinessServiceInterface 
+{
+	Login users = new Login();
+	
     /**
      * Default constructor. 
      */
-    public BusinessService1() {
-        // TODO Auto-generated constructor stub
+    public BusinessService1() 
+    {
+       
     }
 
 	/**
      * @see BusinessServiceInterface#validateNewUser()
      */
-    public String validateNewUser() {
-        // TODO Auto-generated method stub
-			return null;
+    public String validateNewUser() 
+    {
+    	System.out.println("Hello new user");
+		boolean valid = DatabaseValidation.checkNewUser(users.getUsername(), users.getPassword());
+		System.out.println("After db valid");
+		if (valid)
+		{
+			System.out.println("true");
+			return "success";
+		}
+		else
+		{
+			System.out.println("false");
+			return "register";
+		}
     }
 
 	/**
      * @see BusinessServiceInterface#validateUserAndPassword()
      */
-    public String validateUserAndPassword() {
-        // TODO Auto-generated method stub
-			return null;
+    public String validateUserAndPassword() 
+    {
+    	boolean valid = DatabaseValidation.check(users.getUsername(), users.getPassword());
+		if(valid)
+		{
+			return "success";
+		}
+		else
+		{
+			return "failure";
+		}
     }
 
 }

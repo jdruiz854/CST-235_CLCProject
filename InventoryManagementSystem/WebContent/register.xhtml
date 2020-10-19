@@ -23,7 +23,7 @@
             <h:inputSecret value="#{login.password}" />
         </div>
         <div id="submitBtn" class="textPlacement">
-            <h:commandButton value="Register" action="#{login.validateNewUser}" />   
+            <h:commandButton value="Register" action="#{login.validateNewUser()}" />   
         </div>
         <div id="homeBtn" class="textPlacement">
         	<h:button value ="Home" outcome="success"/>

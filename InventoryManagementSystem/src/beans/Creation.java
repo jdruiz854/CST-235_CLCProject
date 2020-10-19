@@ -56,8 +56,5 @@ public class Creation
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-	
-	
-	
+	}	
 }
