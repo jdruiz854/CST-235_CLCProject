@@ -6,20 +6,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import beans.Creation;
+import business.BusinessServiceInterface;
 
 @ManagedBean
 @ViewScoped
-public class DatabaseService 
+public class DatabaseService
 {
 	
-	public String getAllOrders() throws SQLException
+	public ArrayList<Creation> getAllOrders() throws SQLException
 	{
-	
+		ArrayList<Creation> items = new ArrayList<>();
+		Creation c;
+		
 		String url = "jdbc:postgresql://localhost:5432/postgres"; //these are placeholders until the next milestone
 		String username = "postgres";
 		String password = "Tetelestai";
@@ -39,18 +43,18 @@ public class DatabaseService
 			
 			while (rs.next())
 		{
-			System.out.println("id = " + rs.getInt("id") + " Order Numbre: " + rs.getString("order_no") + " Product Name: " + rs.getString("product_name") + " Price: " + 
-								rs.getString("price") + " Quantity: " + rs.getString("quantity"));
+			System.out.println("SKU: " + rs.getInt("sku") + " Item Name: " + rs.getString("item_name") + " Item Description: " + rs.getString("item_description") + " Quantity: " + rs.getString("quantity"));
+		
+			c = new Creation(rs.getInt("sku"),rs.getString("item_number"), rs.getString("item_description"), rs.getInt("quantity"));
+			items.add(c);
+			
 		}
-			
-			
 		} 
 			catch (SQLException e)
 		{
 			e.printStackTrace();
 			System.out.println("Failure!");
 			
-			return "viewAll";
 		} 
 		finally
 		{
@@ -58,7 +62,7 @@ public class DatabaseService
 			stmt.close();
 			conn.close();
 		}
-		return "viewAll";
+		return items;
 	}
 	
 	public int deleteItem(int sku) throws SQLException
@@ -180,4 +184,5 @@ public class DatabaseService
 		return rows;
 		
 	}
+	
 }
