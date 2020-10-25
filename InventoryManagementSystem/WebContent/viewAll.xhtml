@@ -30,7 +30,7 @@
 		<h1>All Products</h1>
 
 		
-		<h:dataTable value="#{databaseService.allOrders()}" var="o" styleClass = "order-table" headerClass = "order-table-header"
+		<h:dataTable value="#{databaseService.allOrders}" var="o" styleClass = "order-table" headerClass = "order-table-header"
 				rowClasses = "order-table-odd, order-table-even">
 			<h:column>
 				<f:facet name="header">SKU</f:facet>
