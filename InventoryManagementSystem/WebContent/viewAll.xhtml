@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+
+	<title><ui:insert name = "pageTitel">Page Title</ui:insert></title>
+	<style>
+		.order-table
+		{
+			border:1px black solid;
+		}
+		
+		.order-table-odd
+		{
+			background: #EEE;
+		}
+		
+		.order-table-header
+		{
+			font-weight:bold;
+		}
+	
+	</style>
+
+</h:head> 
+	<body> 
+		<h1>All Products</h1>
+
+		
+		<h:dataTable value="#{formController.service.items}" var="o" styleClass = "order-table" headerClass = "order-table-header"
+				rowClasses = "order-table-odd, order-table-even">
+			<h:column>
+				<f:facet name="header">SKU</f:facet>
+				#{o.sku}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Item Name</f:facet>
+				#{o.itemName}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Item Description</f:facet>
+				#{o.itemDescription}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Quantity</f:facet>
+				#{o.quantity}
+			</h:column>
+			
+		</h:dataTable>
+		
+	</body> 
+</html>
+
