@@ -31,11 +31,12 @@ public class FormController
 		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("creation", a);
 		
 		//show the response page.
-		return "ResponsePage.xhtml";
+		return "viewAll.xhtml";
 	}
 	
 	public BusinessServiceInterface getService()
 	{
 		return services;
 	}
+
 }
