@@ -1,5 +1,7 @@
 package controllers;
 
+import java.sql.SQLException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -7,6 +9,7 @@ import javax.inject.Inject;
 
 import beans.Creation;
 import business.BusinessServiceInterface;
+import database.DatabaseService;
 
 @ManagedBean
 @ViewScoped
@@ -15,21 +18,29 @@ public class FormController
 	@Inject
 	BusinessServiceInterface services;
 	
-	public String onSubmitEdit()
+	public String onSubmitEdit() throws SQLException
 	{
-		//when the user creates a new item
-		
-		
-		//read the "get" values from the form
 		FacesContext context = FacesContext.getCurrentInstance();
-		Creation a = context.getApplication().evaluateExpressionGet(context, "#{creation}", Creation.class);
 		
-		System.out.println("The object entered is " + a.getSku());
+		Creation c = context.getApplication().evaluateExpressionGet(context, "#{creation}", Creation.class);
+		
+		System.out.println("New Item Added - Sku: " + c.getSku() + "Item Name: " + c.getItemName() + "Item Description: " + c.getItemDescription() + "Quantity: " + c.getQuantity());
+		DatabaseService ds = new DatabaseService();
+		ds.insertItem(c);
+		
+		//show the response page.
+		return "viewAll.xhtml";
+	}
+	
+	public String onDelete(Creation c) throws SQLException
+	{
+				
+		System.out.println("The object to delete is " + c.getSku());
 		//store the "get" values in an object
-		
-		//put the get values into a response page
-		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("creation", a);
-		
+				
+		DatabaseService ds = new DatabaseService();
+		ds.deleteItem(c.getSku());
+				
 		//show the response page.
 		return "viewAll.xhtml";
 	}
@@ -37,6 +48,15 @@ public class FormController
 	public BusinessServiceInterface getService()
 	{
 		return services;
+	}
+	
+	public String onUpdate(int sku, Creation c) throws SQLException
+	{
+		System.out.println("The Object being updated is " + "Sku: " + c.getSku() + " Item Name: " + c.getItemName()+ "Item Description: " + c.getItemDescription()+ "Quanityt: " + c.getQuantity());
+		DatabaseService ds = new DatabaseService();
+		ds.updateItem(sku, c);
+		
+		return "viewAll.xhtml";
 	}
 
 }
