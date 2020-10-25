@@ -99,7 +99,7 @@ public class DatabaseService
 
 	}
 	
-	public int updateItem(int sku) throws SQLException
+	public int updateItem(int sku, Creation c) throws SQLException
 	{
 		String url = "jdbc:postgresql://localhost:5432/postgres"; //these are placeholders until the next milestone
 		String username = "postgres";
