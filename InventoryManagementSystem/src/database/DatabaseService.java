@@ -14,9 +14,8 @@ import javax.faces.bean.ViewScoped;
 import beans.Creation;
 import business.BusinessServiceInterface;
 
-@ManagedBean
-@ViewScoped
-public class DatabaseService
+
+public class DatabaseService implements DatabaseServiceInterface
 {
 	
 	public ArrayList<Creation> getAllOrders() throws SQLException
@@ -184,5 +183,5 @@ public class DatabaseService
 		return rows;
 		
 	}
-	
+
 }

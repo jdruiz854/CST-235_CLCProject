@@ -29,7 +29,7 @@ public class FormController
 		ds.insertItem(c);
 		
 		//show the response page.
-		return "viewAll.xhtml";
+		return "viewAll";
 	}
 	
 	public String onDelete(Creation c) throws SQLException
@@ -42,7 +42,7 @@ public class FormController
 		ds.deleteItem(c.getSku());
 				
 		//show the response page.
-		return "viewAll.xhtml";
+		return "viewAll";
 	}
 	
 	public BusinessServiceInterface getService()
@@ -56,7 +56,22 @@ public class FormController
 		DatabaseService ds = new DatabaseService();
 		ds.updateItem(sku, c);
 		
-		return "viewAll.xhtml";
+		return "viewAll";
+	}
+	
+	public String onSubmitAll()
+	{
+		return "viewAll";
+	}
+	
+	public String onLogOff()
+	{
+		// Invalidate the Session to clear the security token
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+			
+		// Redirect to a protected page (so we get a full HTTP Request) to get Login Page
+		return "TestResponse.xhtml?faces-redirect=true";
+
 	}
 
 }

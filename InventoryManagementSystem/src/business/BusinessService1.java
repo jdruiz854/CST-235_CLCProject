@@ -1,5 +1,6 @@
 package business;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,9 @@ import javax.enterprise.inject.Alternative;
 
 import beans.Creation;
 import beans.Login;
+import beans.Creation;
 import database.DatabaseValidation;
+import database.DatabaseService;
 
 /**
  * Session Bean implementation class BusinessService1
@@ -21,14 +24,6 @@ public class BusinessService1 implements BusinessServiceInterface
 {
 	Login users = new Login();
 	
-    /**
-     * Default constructor. 
-     */
-    public BusinessService1() 
-    {
-       
-    }
-
 	/**
      * @see BusinessServiceInterface#validateNewUser()
      */
@@ -52,6 +47,7 @@ public class BusinessService1 implements BusinessServiceInterface
 	/**
      * @see BusinessServiceInterface#validateUserAndPassword()
      */
+	
     public String validateUserAndPassword() 
     {
     	boolean valid = DatabaseValidation.check(users.getUsername(), users.getPassword());
@@ -64,5 +60,4 @@ public class BusinessService1 implements BusinessServiceInterface
 			return "failure";
 		}
     }
-
 }

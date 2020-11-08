@@ -2,9 +2,11 @@ package beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @ManagedBean
 @ViewScoped
+@XmlRootElement
 public class Creation 
 {
 	
@@ -56,5 +58,8 @@ public class Creation
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}	
+	}
+	
+	
+	
 }

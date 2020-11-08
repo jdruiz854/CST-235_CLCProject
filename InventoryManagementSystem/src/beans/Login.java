@@ -1,7 +1,11 @@
 package beans;
 
+import java.security.Principal;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import database.DatabaseValidation;
 
@@ -63,5 +67,20 @@ public class Login
 			System.out.println("false");
 			return "register";
 		}
+	}
+	
+	@PostConstruct
+	public void init()
+	{
+		Principal principle= FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+		if(principle == null)
+		{
+			setUsername("Unknown");
+		}
+		else
+		{
+			setUsername(principle.getName());
+		}
+
 	}
 }
